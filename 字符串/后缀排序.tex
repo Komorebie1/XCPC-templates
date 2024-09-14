@@ -1,0 +1,12 @@
+$sa$ 表示排第 $i$ 的后缀的前一半是第几个后缀, $sa2$ 表示排第$i$的后缀的后一半是第几个后缀，$rk$ 表示第 $i$ 个后缀排第几, 有$sa[rk[i]]=i, rk[sa[i]]=i$. 
+
+$height[i]: lcp(sa[i],sa[i−1]) $，即排名为 $i$ 的后缀与排名为 $i−1$ 的后缀的最长公共前缀。
+
+$height[rak[i]]$，即 $i$​ 号后缀与它前一名的后缀的最长公共前缀。
+
+经典应用：
+\begin{itemize}
+    \item 两个后缀的最大公共前缀：$lcp(x,y)=min(heigh[x-y])$，用RMQ维护，$O(1)$ 查询。
+    \item 可重叠最长重复子串：$height$ 数组中最大值
+    \item 本质不同的字串的数量：枚举每一个后缀，第 $i$ 个后缀对答案的贡献为 $len-sa[i]+1-height[i]$
+\end{itemize}

@@ -1,0 +1,7 @@
+<并查集> <DSU.cpp> <DSU.tex>
+<树状数组> <Fenwick.cpp>
+<ST表> <ST.cpp>
+<线段树> <SegmentTree.cpp> <SegmentTree.tex>
+<主席树> <PresidentTree.cpp> <PresidentTree.tex>
+<树上启发式合并> <DSUonTree.cpp>
+<莫队算法> <莫队.cpp> <莫队.tex>

@@ -1,0 +1,36 @@
+给定 $n$ 个小球 $m$ 个盒子。
+\begin{itemize}
+    \item 球同，盒不同、不能空，隔板法： $N$ 个小球即一共 $N-1$ 个空，分成 $M$ 堆即 $M-1$ 个隔板，答案为 $\dbinom{n-1}{m-1}$ 。
+    \item 球同，盒不同、能空，隔板法：多出 $M-1$ 个虚空球，答案为 $\dbinom{m-1+n}{n}$ 。
+    \item 球同，盒同、能空：$\dfrac{1}{(1-x)(1-x^2)\dots(1-x^m)}$ 的 $x^n$ 项的系数。动态规划，答案为 $$
+dp[i][j]= \left\{\begin{array}{ll}
+dp[i][j-1]+dp[i-j][j] & \text{if } i \geq j \\
+dp[i][j-1] & \text{if } i < j \\
+1 & \text{if } j = 1 \ \text{or}\ i \leq 1
+\end{array}\right.
+$$
+
+
+    \item 球同，盒同、不能空：$\dfrac{x^m}{(1-x)(1-x^2)\dots(1-x^m)}$ 的 $x^n$ 项的系数。动态规划，答案为 $$
+dp[n][m]= \left\{
+\begin{array}{ll}
+dp[n-m][m] & \text{if } n \ge m \\
+0 & \text{if } n < m \\
+\end{array}
+\right.
+$$
+
+    \item 球不同，盒同、不能空：第二类斯特林数 ${\tt Stirling2}(n,m)$ ，答案为 $$
+dp[n][m] = \left\{
+\begin{array}{ll}
+m \cdot dp[n-1][m] + dp[n-1][m-1] & \text{if } 1 \le m < n \\
+1 & \text{if } 0 \le n = m \\
+0 & \text{if } m = 0 \text{ and } 1 \le n \\
+\end{array}
+\right.
+$$
+
+    \item 球不同，盒同、能空：第二类斯特林数之和 $\displaystyle\sum_{i=1}^m{\tt Stirling2}(n,m)$ ，答案为 $\sum_{i = 0}^{m} dp[n][i]$ 。
+    \item 球不同，盒不同、不能空：第二类斯特林数乘上 $m$ 的阶乘 $m!\cdot{\tt Stirling2}(n,m)$ ，答案为 $dp[n][m] * m!$ 。
+    \item 球不同，盒不同、能空：答案为 $m^n$ 。
+\end{itemize}

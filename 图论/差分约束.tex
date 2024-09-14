@@ -1,0 +1,11 @@
+求解差分约束系统，有 $m$ 条约束条件，每条都为形如 $x_a-x_b\geq c_k$，$x_a-x_b\leq c_k$ 或 $x_a=x_b$ 的形式，判断该差分约束系统有没有解，如果有解，求出一组解。
+
+\begin{tabular}{ccc}
+    题意 & 转化 & 连边 \\
+    $x_a - x_b \geq c$ & $x_b - x_a \leq -c$ & add(a, b, -c); \\
+    $x_a - x_b \leq c$ & $x_a - x_b \leq c$ & add(b, a, c); \\
+    $x_a = x_b$ & $x_a - x_b \leq 0$, $\space x_b - x_a \leq 0$ & add(b, a, 0), add(a, b, 0); \\
+  \end{tabular}
+
+若要求出一组解，则每个点到源点的最短路即为解。
+具体过程见参考代码

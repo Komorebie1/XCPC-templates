@@ -1,0 +1,10 @@
+欧拉函数定义：$1$ 到 $N$ 中与 $N$ 互质数的个数称为欧拉函数，即 $\varphi(n)=\sum_{i=1}^n[\gcd(n,i)=1]$，记作 $\varphi (N)$ 。
+
+$$\varphi(x)=x\prod_{i=1}^n(1-\frac{1}{p_i})$$
+
+求解单个数的欧拉函数直接质因数分解
+
+欧拉定理：若 $a$ 与 $m$ 互质，则 $a^{\varphi(m)}\equiv 1\pmod m$，变式 $a^b≡a^{b\%\varphi(m)}(mod\ m)$ 。
+
+扩展欧拉定理：若 $a$ 与 $m$ 不互质，则 $a^b\equiv a^{b\% \varphi(m)+\varphi(m)}\pmod m$ 。
+$$a^c\equiv\left\{\begin{array}{l|l}a^{c\operatorname{mod}\varphi(m)}&\gcd(a,m)=1\\a^c&\gcd(a,m)\neq1,c<\varphi(m)\\a^{c\operatorname{mod}\varphi(m)+\varphi(m)}&\gcd(a,m)\neq1,c\geq\varphi(m)\end{array}\right.$$

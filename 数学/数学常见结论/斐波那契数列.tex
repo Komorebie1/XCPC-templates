@@ -1,0 +1,30 @@
+通项公式：$F_n=\dfrac{1}{\sqrt 5}*  \Big[ \Big( \dfrac{1+\sqrt 5}{2} \Big)^n - \Big( \dfrac{1-\sqrt 5}{2} \Big)^n \Big]$ 。
+
+直接结论：
+\begin{itemize}
+    \item 卡西尼性质：$F_{n-1} * F_{n+1}-F_n^2=(-1)^n$ ；
+    \item $F_{n}^2+F_{n+1}^2=F_{2n+1}$ ；
+    \item $F_{n+1}^2-F_{n-1}^2=F_{2n}$ （由上一条写两遍相减得到）；
+    \item 若存在序列 $a_0=1,a_n=a_{n-1}+a_{n-3}+a_{n-5}+...(n\ge 1)$ 则 $a_n=F_n(n\ge 1)$ ；
+    \item 齐肯多夫定理：任何正整数都可以表示成若干个不连续的斐波那契数（ $F_2$ 开始）可以用贪心实现。
+\end{itemize}
+
+求和公式结论：
+\begin{itemize}
+    \item 奇数项求和：$F_1+F_3+F_5+...+F_{2n-1}=F_{2n}$ ；
+    \item 偶数项求和：$F_2+F_4+F_6+...+F_{2n}=F_{2n+1}-1$ ；
+    \item 平方和：$F_1^2+F_2^2+F_3^2+...+F_n^2=F_n*F_{n+1}$ ；
+    \item $F_1+2F_2+3F_3+...+nF_n=nF_{n+2}-F_{n+3}+2$ ；
+    \item $-F_1+F_2-F_3+...+(-1)^nF_n=(-1)^n(F_{n+1}-F_n)+1$ ；
+    \item $F_{2n-2m-2}(F_{2n}+F_{2n+2})=F_{2m+2}+F_{4n-2m}$ 。
+\end{itemize}
+
+数论结论：
+\begin{itemize}
+    \item $F_a \mid F_b \Leftrightarrow a \mid b$ ；
+    \item $\gcd(F_a,F_b)=F_{\gcd(a,b)}$ ；
+    \item 当 $p$ 为 $5k\pm 1$ 型素数时，$\begin{cases} F_{p-1}\equiv 0\pmod p \\ F_p\equiv 1\pmod p \\ F_{p+1}\equiv 1\pmod p \end{cases}$ ；
+    \item 当 $p$ 为 $5k\pm 2$ 型素数时，$\begin{cases} F_{p-1}\equiv 1\pmod p \\ F_p\equiv -1\pmod p \\ F_{p+1}\equiv 0\pmod p \end{cases}$ ；
+    \item $F(n)\%m$ 的周期 $\le 6m$ （ $m=2\times 5^k$ 时取到等号）；
+    \item 既是斐波那契数又是平方数的有且仅有 $1,144$ 。
+\end{itemize}

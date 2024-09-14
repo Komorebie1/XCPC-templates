@@ -1,0 +1,4 @@
+\begin{itemize}
+    \item 当mod为质数时, $ax\equiv 1 \pmod b$由费马小定理有$ax\equiv a^{b-1}\pmod b$, $\therefore x\equiv a^{b-2} \pmod b$, 快速幂求 $a^{b-2}$ 即可
+    \item 扩展欧几里得方法（要求 $\gcd(a,b)=1$ ）: 等价于求 $ax\equiv 1\pmod p$ 的解，可以写为 $ax+pk = 1$，求解 $x,k$ 即可。
+\end{itemize}

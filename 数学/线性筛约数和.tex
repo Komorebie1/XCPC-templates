@@ -1,0 +1,4 @@
+记 $\sigma(i)$ 表示 $i$ 的约数和
+$$\sigma(i)=\prod_{k=1}^i\left(\sum_{a_i=0}^{p_i}p_i^i\right)$$
+维护 $\text{low}(i)$ 表示 $i$ 的最小质因子的指数次幂，即 $p^{a_1}_1$，$\text{sum}(i)$ 表示 $i$ 的最小质因子对答案的贡献，即 $\sum_{a_1=0}^{p_1}p_1^1$。
+可能会爆int。

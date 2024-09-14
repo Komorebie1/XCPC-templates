@@ -1,0 +1,362 @@
+\documentclass[10pt,a4paper]{article}
+%\usepackage{zh_CN-Adobefonts_external}
+\usepackage{xeCJK}
+\usepackage{amsmath, amsthm}
+\usepackage{listings,xcolor}
+\usepackage{geometry} % 设置页边距
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+\usepackage{fancyhdr} % 自定义页眉页脚
+\usepackage[backend=biber]{biblatex}
+\usepackage{amssymb}
+\usepackage{booktabs}
+
+\setsansfont{Consolas} % 设置英文字体
+\setmonofont[Mapping={}]{Consolas} % 英文引号之类的正常显示，相当于设置英文字体
+
+\linespread{1.2}
+
+\title{Template For ICPC}
+\author{ZhengZX @ UESTC}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\pagestyle{fancy}
+
+\lhead{\CJKfamily{kai} University of Electronic Science and Technology of China} %以下分别为左中右的页眉和页脚
+\chead{}
+
+\rhead{\CJKfamily{kai} 第 \thepage 页}
+\lfoot{} 
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0.4pt}
+%\geometry{left=2.5cm,right=3cm,top=2.5cm,bottom=2.5cm} % 页边距
+\geometry{left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
+\setlength{\columnsep}{30pt}
+
+\makeatletter
+
+\makeatother
+
+
+
+\lstset{
+    language    = c++,
+    numbers     = left,
+    numberstyle={                               % 设置行号格式
+        \small
+        \color{black}
+        \fontspec{Consolas}
+    },
+	commentstyle = \color[RGB]{0,128,0}\bfseries, %代码注释的颜色
+	keywordstyle={                              % 设置关键字格式
+        \color[RGB]{40,40,255}
+        \fontspec{Consolas Bold}
+        \bfseries
+    },
+	stringstyle={                               % 设置字符串格式
+        \color[RGB]{128,0,0}
+        \fontspec{Consolas}
+        \bfseries
+    },
+	basicstyle={                                % 设置代码格式
+        \fontspec{Consolas}
+        \small\ttfamily
+    },
+	emphstyle=\color[RGB]{112,64,160},          % 设置强调字格式
+    breaklines=true,                            % 设置自动换行
+    tabsize     = 4,
+    frame       = single,%主题
+    columns     = fullflexible,
+    rulesepcolor = \color{red!20!green!20!blue!20}, %设置边框的颜色
+    showstringspaces = false, %不显示代码字符串中间的空格标记
+	escapeinside={\%*}{*)},
+}
+
+\begin{document}
+\title{ICPC Templates}
+\author {Komorebie}
+\maketitle
+\tableofcontents
+\newpage
+\section{杂项}
+\subsection{\_\_int128输出流自定义}
+\lstinputlisting{杂项/__int128输出流.cpp}
+\subsection{unordered\_map使用pair作为key}
+\begin{spacing}{1.5}
+\input{杂项/hashtable.tex}
+\end{spacing}
+\lstinputlisting{杂项/hashtable.cpp}
+\subsection{cout设置精度}
+\lstinputlisting{杂项/cout设置精度.cpp}
+\subsection{库函数}
+\subsubsection{位运算函数}
+\lstinputlisting{杂项/库函数/__builtin.cpp}
+\subsubsection{批量递增赋值函数}
+\lstinputlisting{杂项/库函数/批量递增赋值函数.cpp}
+\subsubsection{数组随机打乱}
+\lstinputlisting{杂项/库函数/数组随机打乱.cpp}
+\subsection{字符串转化}
+\subsubsection{数字转字符串}
+\begin{spacing}{1.5}
+\input{杂项/字符串转化/数字转字符串.tex}
+\end{spacing}
+\lstinputlisting{杂项/字符串转化/数字转字符串.cpp}
+\subsubsection{字符串转数字}
+\lstinputlisting{杂项/字符串转化/字符串转数字.cpp}
+\section{数据结构}
+\subsection{并查集}
+\begin{spacing}{1.5}
+\input{数据结构/DSU.tex}
+\end{spacing}
+\lstinputlisting{数据结构/DSU.cpp}
+\subsection{树状数组}
+\lstinputlisting{数据结构/Fenwick.cpp}
+\subsection{ST表}
+\lstinputlisting{数据结构/ST.cpp}
+\subsection{线段树}
+\begin{spacing}{1.5}
+\input{数据结构/SegmentTree.tex}
+\end{spacing}
+\lstinputlisting{数据结构/SegmentTree.cpp}
+\subsection{主席树}
+\begin{spacing}{1.5}
+\input{数据结构/PresidentTree.tex}
+\end{spacing}
+\lstinputlisting{数据结构/PresidentTree.cpp}
+\subsection{树上启发式合并}
+\lstinputlisting{数据结构/DSUonTree.cpp}
+\subsection{莫队算法}
+\begin{spacing}{1.5}
+\input{数据结构/莫队.tex}
+\end{spacing}
+\lstinputlisting{数据结构/莫队.cpp}
+\section{字符串}
+\subsection{KMP}
+\lstinputlisting{字符串/KMP.cpp}
+\subsection{Manacher}
+\lstinputlisting{字符串/Manacher.cpp}
+\subsection{trie树}
+\lstinputlisting{字符串/trie树.cpp}
+\subsection{Z函数}
+\begin{spacing}{1.5}
+\input{字符串/Z函数.tex}
+\end{spacing}
+\lstinputlisting{字符串/Z函数.cpp}
+\subsection{AC自动机}
+\lstinputlisting{字符串/AC自动机.cpp}
+\subsection{回文自动机}
+\begin{spacing}{1.5}
+\input{字符串/回文自动机.tex}
+\end{spacing}
+\lstinputlisting{字符串/回文自动机.cpp}
+\subsection{后缀排序}
+\begin{spacing}{1.5}
+\input{字符串/后缀排序.tex}
+\end{spacing}
+\lstinputlisting{字符串/后缀排序.cpp}
+\section{图论}
+\subsection{最短路}
+\subsubsection{Dijkstra朴素版}
+\begin{spacing}{1.5}
+\input{图论/最短路/Dijkstra朴素版.tex}
+\end{spacing}
+\lstinputlisting{图论/最短路/Dijkstra朴素版.cpp}
+\subsubsection{Dijkstra堆优化版}
+\begin{spacing}{1.5}
+\input{图论/最短路/Dijkstra堆优化版.tex}
+\end{spacing}
+\lstinputlisting{图论/最短路/Dijkstra堆优化版.cpp}
+\subsubsection{SPFA}
+\begin{spacing}{1.5}
+\input{图论/最短路/SPFA.tex}
+\end{spacing}
+\lstinputlisting{图论/最短路/SPFA.cpp}
+\subsubsection{Bellman-Ford}
+\lstinputlisting{图论/最短路/Bellman-Ford.cpp}
+\subsection{网络流}
+\subsubsection{EK}
+\lstinputlisting{图论/网络流/EK.cpp}
+\subsubsection{Dinic}
+\lstinputlisting{图论/网络流/Dinic.cpp}
+\subsubsection{MCMF}
+\lstinputlisting{图论/网络流/MCMF.cpp}
+\subsection{tarjan}
+\subsubsection{tarjan求割点}
+\begin{spacing}{1.5}
+\input{图论/tarjan/tarjan求割点.tex}
+\end{spacing}
+\lstinputlisting{图论/tarjan/tarjan求割点.cpp}
+\subsubsection{tarjan求强连通分量}
+\begin{spacing}{1.5}
+\input{图论/tarjan/tarjan求强连通分量.tex}
+\end{spacing}
+\lstinputlisting{图论/tarjan/tarjan求强连通分量.cpp}
+\subsubsection{tarjan求点双连通分量（圆方树）}
+\lstinputlisting{图论/tarjan/tarjan求点双连通分量.cpp}
+\subsubsection{tarjan求边双连通分量}
+\lstinputlisting{图论/tarjan/tarjan求边双连通分量.cpp}
+\subsection{树上问题}
+\subsubsection{树的直径}
+\lstinputlisting{图论/树上问题/树的直径.cpp}
+\subsubsection{树的重心}
+\lstinputlisting{图论/树上问题/树的重心.cpp}
+\subsubsection{最近公共祖先（倍增）}
+\lstinputlisting{图论/树上问题/树上LCA（倍增）.cpp}
+\subsubsection{树链剖分}
+\lstinputlisting{图论/树上问题/树链剖分.cpp}
+\subsection{拓扑排序}
+\lstinputlisting{图论/topsort.cpp}
+\subsection{染色法判断二分图}
+\lstinputlisting{图论/染色法判断二分图.cpp}
+\subsection{匈牙利算法求最大匹配}
+\lstinputlisting{图论/匈牙利算法求最大匹配.cpp}
+\subsection{差分约束}
+\begin{spacing}{1.5}
+\input{图论/差分约束.tex}
+\end{spacing}
+\lstinputlisting{图论/差分约束.cpp}
+\section{数学}
+\subsection{试除法分解质因数}
+\lstinputlisting{数学/试除法分解质因数.cpp}
+\subsection{欧拉筛}
+\lstinputlisting{数学/欧拉筛.cpp}
+\subsection{欧拉函数和欧拉定理}
+\subsubsection{欧拉函数}
+\begin{spacing}{1.5}
+\input{数学/欧拉函数和欧拉定理/欧拉函数.tex}
+\end{spacing}
+\lstinputlisting{数学/欧拉函数和欧拉定理/欧拉函数.cpp}
+\subsubsection{线性筛欧拉函数}
+\lstinputlisting{数学/欧拉函数和欧拉定理/线性筛欧拉函数.cpp}
+\subsection{莫比乌斯函数}
+\begin{spacing}{1.5}
+\input{数学/莫比乌斯函数.tex}
+\end{spacing}
+\lstinputlisting{数学/莫比乌斯函数.cpp}
+\subsection{线性筛约数个数}
+\begin{spacing}{1.5}
+\input{数学/线性筛约数个数.tex}
+\end{spacing}
+\lstinputlisting{数学/线性筛约数个数.cpp}
+\subsection{线性筛约数和}
+\begin{spacing}{1.5}
+\input{数学/线性筛约数和.tex}
+\end{spacing}
+\lstinputlisting{数学/线性筛约数和.cpp}
+\subsection{裴蜀定理}
+\begin{spacing}{1.5}
+\input{数学/裴蜀定理.tex}
+\end{spacing}
+\subsection{扩展欧几里得算法}
+\begin{spacing}{1.5}
+\input{数学/扩展欧几里得算法.tex}
+\end{spacing}
+\lstinputlisting{数学/扩展欧几里得算法.cpp}
+\subsection{快速幂}
+\lstinputlisting{数学/快速幂.cpp}
+\subsection{BSGS离散对数}
+\lstinputlisting{数学/BSGS.cpp}
+\subsection{乘法逆元}
+\begin{spacing}{1.5}
+\input{数学/乘法逆元.tex}
+\end{spacing}
+\lstinputlisting{数学/乘法逆元.cpp}
+\subsection{快速递推求逆元}
+\begin{spacing}{1.5}
+\input{数学/快速递推求逆元.tex}
+\end{spacing}
+\lstinputlisting{数学/快速递推求逆元.cpp}
+\subsection{中国剩余定理}
+\begin{spacing}{1.5}
+\input{数学/中国剩余定理.tex}
+\end{spacing}
+\lstinputlisting{数学/中国剩余定理.cpp}
+\subsection{高斯消元}
+\begin{spacing}{1.5}
+\input{数学/高斯消元.tex}
+\end{spacing}
+\lstinputlisting{数学/高斯消元.cpp}
+\subsection{FFT}
+\subsubsection{FFT递归版}
+\lstinputlisting{数学/FFT/FFT递归版.cpp}
+\subsubsection{FFT迭代版}
+\lstinputlisting{数学/FFT/FFT迭代版.cpp}
+\subsection{线性基}
+\subsubsection{高斯消元法求线性基}
+\begin{spacing}{1.5}
+\input{数学/线性基/高斯消元法.tex}
+\end{spacing}
+\lstinputlisting{数学/线性基/高斯消元法.cpp}
+\subsubsection{贪心法求线性基}
+\begin{spacing}{1.5}
+\input{数学/线性基/贪心法.tex}
+\end{spacing}
+\lstinputlisting{数学/线性基/贪心法.cpp}
+\subsection{数学常见结论}
+\subsubsection{插板法}
+\begin{spacing}{1.5}
+\input{数学/数学常见结论/插板法.tex}
+\end{spacing}
+\subsubsection{组合数学常见性质}
+\begin{spacing}{1.5}
+\input{数学/数学常见结论/组合数学常见性质.tex}
+\end{spacing}
+\subsubsection{斯特林数}
+\begin{spacing}{1.5}
+\input{数学/数学常见结论/斯特林数.tex}
+\end{spacing}
+\subsubsection{卡特兰数}
+\begin{spacing}{1.5}
+\input{数学/数学常见结论/卡特兰数.tex}
+\end{spacing}
+\subsubsection{斐波那契数列}
+\begin{spacing}{1.5}
+\input{数学/数学常见结论/斐波那契数列.tex}
+\end{spacing}
+\section{博弈论}
+\subsection{巴什博弈}
+\subsubsection{朴素巴什博弈}
+\begin{spacing}{1.5}
+\input{博弈论/巴什博弈/巴什博弈.tex}
+\end{spacing}
+\subsubsection{扩展巴什博弈}
+\begin{spacing}{1.5}
+\input{博弈论/巴什博弈/扩展巴什博弈.tex}
+\end{spacing}
+\subsection{Nim博弈}
+\subsubsection{Nim博弈}
+\begin{spacing}{1.5}
+\input{博弈论/Nim博弈/Nim.tex}
+\end{spacing}
+\subsubsection{Nim\_K}
+\begin{spacing}{1.5}
+\input{博弈论/Nim博弈/Nim_K.tex}
+\end{spacing}
+\subsubsection{反Nim游戏}
+\begin{spacing}{1.5}
+\input{博弈论/Nim博弈/反Nim.tex}
+\end{spacing}
+\subsection{SG游戏}
+\subsubsection{SG定理和SG函数}
+\begin{spacing}{1.5}
+\input{博弈论/SG游戏/SG定理.tex}
+\end{spacing}
+\lstinputlisting{博弈论/SG游戏/SG函数.cpp}
+\subsubsection{反SG博弈}
+\begin{spacing}{1.5}
+\input{博弈论/SG游戏/反SG博弈.tex}
+\end{spacing}
+\section{计算几何}
+\subsection{点和向量}
+\lstinputlisting{计算几何/点和向量.cpp}
+\subsection{直线和线段}
+\lstinputlisting{计算几何/直线和线段.cpp}
+\subsection{凸包}
+\lstinputlisting{计算几何/凸包.cpp}
+\end{document}

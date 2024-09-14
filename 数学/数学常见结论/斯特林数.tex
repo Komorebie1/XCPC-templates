@@ -1,0 +1,33 @@
+
+\textbf{第二类斯特林数（斯特林子集数）}
+$\begin{Bmatrix}n\\ k\end{Bmatrix}$，也可记做 $S(n,k)$，表示将 $n$ 个两两不同的元素，划分为 $k$ 个互不区分的非空子集的方案数。
+递推式
+$$\begin{Bmatrix}n\\ k\end{Bmatrix}=\begin{Bmatrix}n-1\\ k-1\end{Bmatrix}+k\begin{Bmatrix}n-1\\ k\end{Bmatrix}$$
+边界是
+$\begin{Bmatrix}n\\ 0\end{Bmatrix}=[n=0]。$
+
+考虑用组合意义来证明。
+我们插入一个新元素时，有两种方案：
+\begin{itemize}
+    \item 将新元素单独放入一个子集，有 $\begin{Bmatrix}n-1\\ k-1\end{Bmatrix}$ 种方案；
+    \item 将新元素放入一个现有的非空子集，有 $k\begin{Bmatrix}n-1\\ k\end{Bmatrix}$ 种方案。
+\end{itemize}
+根据加法原理，将两式相加即可得到递推式。
+
+\textbf{第一类斯特林数（斯特林轮换数） }
+$\begin{bmatrix}n\\ k\end{bmatrix}$，也可记做 $s(n,k)$，表示将 $n$ 个两两不同的元素，划分为 $k$ 个互不区分的非空轮换的方案数。
+
+一个轮换就是一个首尾相接的环形排列。我们可以写出一个轮换 $[A,B,C,D]$，并且我们认为 $[A,B,C,D]=[B,C,D,A]=[C,D,A,B]=[D,A,B,C]$，即，两个可以通过旋转而互相得到的轮换是等价的。注意，我们不认为两个可以通过翻转而相互得到的轮换等价，即 $[A,B,C,D]\neq[D,C,B,A]$。
+递推式
+$$\begin{bmatrix}n\\ k\end{bmatrix}=\begin{bmatrix}n-1\\ k-1\end{bmatrix}+(n-1)\begin{bmatrix}n-1\\ k\end{bmatrix}$$
+边界是
+$\begin{bmatrix}n\\ 0\end{bmatrix}=[n = 0]$。
+
+该递推式的证明可以考虑其组合意义。我们插入一个新元素时，有两种方案：
+
+\begin{itemize}
+    \item 将该新元素置于一个单独的轮换中，共有 $\begin{bmatrix}n-1\\ k-1\end{bmatrix}$ 种方案；
+    \item 将该元素插入到任何一个现有的轮换中，共有 $(n-1)\begin{bmatrix}n-1\\ k\end{bmatrix}$ 种方案。
+\end{itemize}
+
+根据加法原理，将两式相加即可得到递推式。

@@ -1,0 +1,26 @@
+杜教筛被用于处理一类数论函数的前缀和问题。
+求解 $S(n) = \sum_{i=1}^n f(i)$ 的问题，其中 $f(i)$ 是一个数论函数，杜教筛可以在 $O(n^{2/3})$ 的时间复杂度内解决。
+找一个数论函数 $g$ 
+
+$$\begin{gathered}\sum_{i=1}^n(f*g)(i)=\sum_{i=1}^n\sum_{d|i}g(d)f\left(\frac id\right)\\
+=\sum_{i=1}^n\sum_{j=1}^{\lfloor n/i\rfloor}g(i)f(j) \\
+=\sum_{i=1}^ng(i)\sum_{j=1}^{\lfloor n/i\rfloor}f(j) \\
+=\sum_{i=1}^ng(i)S\left(\left\lfloor\frac ni\right\rfloor\right) 
+\end{gathered}$$
+
+则可以得到递推式：
+$$g(1)S(n)=\sum_{i=1}^n(f*g)(i)-\sum_{i=2}^ng(i)S\left(\left\lfloor\frac ni\right\rfloor\right)$$
+
+$g$ 需要满足：
+\begin{itemize}
+    \item 可以快速计算 $\sum_{i=1}^n (f*g)(i)$
+    \item 可以快速计算 $g$ 的前缀和，以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac ni\right\rfloor\right)$
+\end{itemize}
+
+时间复杂度：$O(S+\frac{n}{\sqrt{S}})$ ，其中 $S$ 是预处理的 $g$ 的前缀和的规模。取 $S=n^{2/3}$ ，时间复杂度最小为 $O(n^{2/3})$ 。
+
+例如，利用杜教筛求 $\sum_{i=1}^n\mu(i)$ 的前缀和：
+利用 $\mu * \mathbf{1} = \mathbf{\varepsilon}$ ，则可以 $g=\mathbf{1}$ ，则有：
+$$S(n) = \sum_{i=1}^n{\mu*\mathbf{1}}(i) - \sum_{i=2}^n 1S\left(\left\lfloor\frac ni\right\rfloor\right)\\
+=1 - \sum_{i=2}^n S\left(\left\lfloor\frac ni\right\rfloor\right)
+$$

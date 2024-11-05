@@ -45,5 +45,6 @@ struct HLD {
         }
         return dep[x] < dep[y] ? x : y;
     }
+    
     int calc(int x, int y) { return dep[x] + dep[y] - 2 * dep[lca(x, y)]; } // 查询两点距离
 };

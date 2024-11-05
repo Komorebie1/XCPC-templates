@@ -1,50 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define endl '\n'
-#define ll long long
-#define double long double
 #define PII pair<int, int>
 #define pi acos(-1.0)
 const int N = 1e5 + 10;
 
-#define eps 1e-8
-inline int sgn(double x) { return fabs(x) < eps ? 0 : (x > 0 ? 1 : -1); }  // 判断正负
+using point_t = long double;
+const point_t eps = 1e-8;
+template <typename T> inline int sgn(T x) { return fabs(x) <= eps ? 0 : (x > 0 ? 1 : -1); }  // 判断正负
 
-struct Point {
-    double x, y;
-    Point(double nx = 0, double ny = 0) : x(nx), y(ny) {}
+template <typename T> struct point {
+    T x, y;
+    point(T nx = 0, T ny = 0) : x(nx), y(ny) {}
     void read() { cin >> this->x >> this->y; }
-    inline bool operator<(Point A)
+    inline point operator+(const point& A) const { return point(A.x + this->x, A.y + this->y); }
+    inline point operator-(const point& A) const { return point(this->x - A.x, this->y - A.y); }
+    inline point operator*(T x) const { return point(this->x * x, this->y * x); }
+    inline point operator/(T x) const { return point(this->x / x, this->y / x); }
+    inline bool operator<(const point& a) const
     {
-        if (sgn(this->x - A.x) == 0) return this->y < A.y - eps;
-        return this->x < A.x - eps;
+        if (abs(x - a.x) <= eps) return y < a.y - eps;
+        return x < a.x - eps;
     }
-    inline Point operator+(Point A) { return Point(A.x + this->x, A.y + this->y); }
-    inline Point operator-(Point A) { return Point(this->x - A.x, this->y - A.y); }
-    inline Point operator*(double x) { return Point(this->x * x, this->y * x); }
-    inline Point operator/(double x) { return Point(this->x / x, this->y / x); }
-    inline bool operator==(Point A) { return sgn(this->x - A.x) == 0 && sgn(this->y - A.y) == 0; }
-    inline double operator*(Point A) { return this->x * A.x + this->y * A.y; }  // 点乘
-    inline double operator^(Point A) { return this->x * A.y - this->y * A.x; }  // 叉积（注意先后顺序）
-    inline double len() { return sqrt((*this) * (*this)); }
-    inline double len2() { return (*this) * (*this); }
-    inline double dis2(Point A) { return (*this - A).len2(); }
-    inline double dis(Point A) { return sqrt(this->dis2(A)); }
-    inline Point unit() { return Point(this->x / this->len(), this->y / this->len()); }
-    inline int toleft(Point A)
+    inline bool operator==(const point& A) const { return sgn(this->x - A.x) == 0 && sgn(this->y - A.y) == 0; }
+    inline T operator*(const point& A) const { return this->x * A.x + this->y * A.y; }  // 点乘
+    inline T operator^(const point& A) const { return this->x * A.y - this->y * A.x; }  // 叉积（注意先后顺序）
+    inline long double len() { return sqrt((*this) * (*this)); }
+    inline T len2() { return (*this) * (*this); }
+    inline T dis2(const point& A) const { return (*this - A).len2(); }
+    inline long double dis(const point& A) const { return sqrt(this->dis2(A)); }
+    inline point unit() { return point(this->x / this->len(), this->y / this->len()); }
+    inline int toleft(point A)
     {
-        double t = (*this) ^ A;
+        T t = (*this) ^ A;
         return (t > eps) - (t < -eps);
     }
-    inline Point Normal() { return Point(-this->y / this->len(), this->x / this->len()); }  // 与A正交的单位向量
-    inline Point rotate(double rad) { return Point(this->x * cos(rad) - this->y * sin(rad), this->x * sin(rad) + this->y * cos(rad)); }
-    inline Point rotate(double costh, double sinth) { return Point(this->x * costh - this->y * sinth, this->x * sinth + this->y * costh); }
+    inline point Normal() { return point(-this->y / this->len(), this->x / this->len()); }  // 与A正交的单位向量
+    inline point rotate(double rad) { return point(this->x * cos(rad) - this->y * sin(rad), this->x * sin(rad) + this->y * cos(rad)); }
+    inline point rotate(double costh, double sinth) { return point(this->x * costh - this->y * sinth, this->x * sinth + this->y * costh); }
 };
-typedef Point Vector;
+using Point = point<point_t>;
+using Vector = point<point_t>;
 
-inline double Len(Vector A) { return sqrt(A * A); }
-inline double Ang(Vector A, Vector B) { return acos(A * B) / A.len() / B.len(); }  // 两个向量夹角
-inline double Area(Vector A, Vector B) { return (A ^ B) / 2; }                     // 两个向量组成的三角形的面积
+inline long double Len(Vector A) { return sqrt(A * A); }
+inline double Ang(Vector A, Vector B) { return acos(A * B) / A.len() / B.len(); }  // 两个向量夹角                    // 两个向量组成的三角形的面积
 inline int toleft(Vector A, Vector B)                                              // toleft测试: B在A左边为1, 右边为-1, 方向相同为0
 {
     double t = A ^ B;
@@ -106,7 +105,10 @@ inline Point LineIntersection(Line L1, Line L2) { return L1.A + (L1.B - L1.A) * 
 struct Polygon {
     vector<Point> p;
 
-    double circ()  // 周长
+    int nxt(const int i) const { return i == p.size() - 1 ? 0 : i + 1; }
+    int pre(const int i) const { return i == 0 ? p.size() - 1 : i - 1; }
+
+    point_t circ()  // 周长
     {
         double sum = 0;
         for (int i = 0; i < p.size(); i++) {
@@ -115,13 +117,13 @@ struct Polygon {
         return sum;
     }
 
-    double area()  // 逆时针存储时为正
+    point_t area()  // 逆时针存储时为正
     {
-        double sum = 0;
+        point_t sum = 0;
         for (int i = 0; i < p.size(); i++) {
             sum += p[i] ^ p[(i + 1) % p.size()];
         }
-        return sum * 0.5;
+        return sum;
     }
 
     int in_polyon(Point a)  // -1表示在边上，0在多边形外，1在多边形内
@@ -181,10 +183,10 @@ struct Convex : Polygon {
         return Convex{res};
     }
 
-    double diameter()
+    long double diameter()
     {
-        double ans = 0;
-        auto area = [](Point u, Point v, Point w) -> double { return (w - u) ^ (w - v); };  // 要求逆时针存点
+        long double ans = 0;
+        auto area = [](Point u, Point v, Point w) -> point_t { return (w - u) ^ (w - v); };  // 要求逆时针存点
         for (int i = 0, j = 1; i < p.size(); i++) {
             int nxt = i + 1 == p.size() ? 0 : i + 1;
             while (sgn(area(p[i], p[nxt], p[j]) - area(p[i], p[nxt], p[j + 1 == p.size() ? 0 : j + 1])) <= 0) j = j + 1 == p.size() ? 0 : j + 1;
@@ -198,21 +200,21 @@ Convex Andrew(vector<Point> p)  // Andrew求凸包O(n\log n)
 {
     vector<Point> st;
     if (p.empty()) return Convex{st};
-    sort(p.begin(), p.end(), [](Point& A, Point& B) { return fabs(A.x - B.x) > eps ? A.x < B.x : A.y < B.y; });
+    sort(p.begin(), p.end(), [](const Point& A, const Point& B) { return fabs(A.x - B.x) > eps ? A.x < B.x : A.y < B.y; });
 
-    auto check = [&](Point cur) {
+    auto check = [&](const Point& cur) {
         auto last = st.back(), last2 = st[st.size() - 2];
         return toleft(last - last2, cur - last) < 0;  // <=时会跳过经过的点
     };
 
-    for (auto cur : p) {
+    for (const Point& cur : p) {
         while (st.size() > 1 && check(cur)) st.pop_back();
         st.push_back(cur);
     }
     int t = st.size();
     p.pop_back();
     reverse(p.begin(), p.end());
-    for (auto cur : p) {
+    for (const Point& cur : p) {
         while (st.size() > t && check(cur)) st.pop_back();
         st.push_back(cur);
     }
@@ -220,14 +222,14 @@ Convex Andrew(vector<Point> p)  // Andrew求凸包O(n\log n)
     return Convex{st};
 }
 
-double ClosestPair(vector<Point> p)  // 平面最近点对 O(n\log n), 调用之前先排序
+long double ClosestPair(vector<Point> p)  // 平面最近点对 O(n\log n), 调用之前先排序
 {
     if (p.size() == 1) return 1e20;
     if (p.size() == 2) {
         return p[0].dis(p[1]);
     }
     int mid = p.size() / 2;
-    double d = min(ClosestPair(vector<Point>(p.begin(), p.begin() + mid)), ClosestPair(vector<Point>(p.begin() + mid, p.end())));
+    long double d = min(ClosestPair(vector<Point>(p.begin(), p.begin() + mid)), ClosestPair(vector<Point>(p.begin() + mid, p.end())));
     vector<Point> tmp;
     for (int i = 0; i < p.size(); i++) {
         if (fabs(p[i].x - p[mid].x) < d + eps) {
@@ -245,11 +247,11 @@ double ClosestPair(vector<Point> p)  // 平面最近点对 O(n\log n), 调用之
 
 struct Circle {
     Point O;
-    double r;
+    long double r;
 
     bool operator==(const Circle& A) { return this->O == A.O && sgn(this->r - A.r) == 0; }
-    double area() { return r * r * pi; }
-    double circ() { return r * pi * 2; }
+    long double area() { return (long double)r * r * pi; }
+    long double circ() { return (long double)r * pi * 2; }
 
     int in(Point a)  // -1 圆上 | 0 圆外 | 1 圆内
     {

@@ -1,0 +1,7 @@
+$g(n, j)$ 表示 $g(n,j)=\sum_{i=1}^nf(i)[i\text{是质数或其最小质因子}>p_j]$ ，转移方程如下：
+
+$$g(n,j)=\begin{cases}g(n,j-1)(P_j^2>n)\\g(n,j-1)-f^{\prime}(P_j)(g(\frac n{P_j},j-1)-\sum_{i=1}^{j-1}f^{\prime}(P_i))(P_j^2\leq n)&\end{cases}$$
+求答案：
+$$S(n,j)=g(n)-\sum_{i=1}^jf(P_i)+\sum_{k>j}\sum_{e=1}^{P_k^e\leq n}f(P_k^e)[S(\frac n{P_k^e},k)+(e>1)]$$
+最后答案为 $S(n,0) + f(1)$，因为 $S$ 函数不会计算到 $1$ 的贡献。 
+

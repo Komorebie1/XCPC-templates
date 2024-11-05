@@ -9,6 +9,8 @@ struct LCA {
         dep.resize(n + 1, 0);
     }
 
+    void work() { dfs(1, 0); }
+
     void dfs(int u, int f)
     {
         fa[u][0] = f;
@@ -16,7 +18,7 @@ struct LCA {
         for (int i = 1; i < 31; i++) {
             fa[u][i] = fa[fa[u][i - 1]][i - 1];
         }
-        for (int v : e[u]) {
+        for (int v : G[u]) {
             if (v != f) {
                 dfs(v, u);
             }
@@ -41,6 +43,7 @@ struct LCA {
         }
         return fa[x][0];
     }
+    bool isAncester(int x, int y) { return lca(x, y) == x; }
 
     int dist(int x, int y) { return dep[x] + dep[y] - 2 * dep[lca(x, y)]; }
 };

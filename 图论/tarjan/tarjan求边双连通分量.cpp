@@ -9,7 +9,7 @@ void tarjan(int u, int fa)
             low[u] = min(low[u], low[v]);
             if (low[v] > dfn[u])  // 找割边
             {
-                cnt_bridge++;
+                cnt_bridge++; // (u, v) 是一个割边
                 es[mp[hh(u, v)]].tag = 1;
             }
         }

@@ -14,7 +14,7 @@ void tarjan(int u, int fa)
                 scc++;
                 while (st.top() != v) {
                     ans[scc].push_back(st.top());
-                    T[scc].push_back(st.top());
+                    T[scc].push_back(st.top()); // 将当前联通分量中的点连到 scc 对应的方点上
                     T[st.top()].push_back(scc);
                     st.pop();
                 }

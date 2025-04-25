@@ -29,7 +29,7 @@ void sieve(int n)
         if (!st[i]) {
             primes[++cnt] = i;
             sp1[cnt] = (sp1[cnt - 1] + i) % mod;
-            sp2[cnt] = (sp2[cnt - 1] + 1ll * i * i % mod) % mod;
+            sp2[cnt] = (sp2[cnt - 1] + 1ll * i * i % mod) % mod;// 质数点值的前缀和
         }
         for (int j = 1; j <= cnt && primes[j] * i < N; j++) {
             st[i * primes[j]] = primes[j];
@@ -62,6 +62,7 @@ ll S(ll i, ll j)
         for (int e = 1; pe <= i; e++, pe = pe * primes[k]) {
             ll x = pe % mod;
             ans = (ans + (x * (x - 1) % mod) * ((S(i / pe, k) + (e > 1)) % mod) % mod) % mod;
+            // 多项式的点值
         }
     }
     return ans;
@@ -77,7 +78,7 @@ int main()
         r = min(n, n / (n / l));
         w[++tot] = n / l;
         g1[tot] = s1(w[tot]);
-        g2[tot] = s2(w[tot]);
+        g2[tot] = s2(w[tot]);// 各单项式的前缀和
         if (w[tot] <= sq) {
             id1[w[tot]] = tot;
         }
@@ -91,6 +92,7 @@ int main()
             ll p = tmp <= sq ? id1[tmp] : id2[n / tmp];
             g1[i] = (g1[i] - primes[j] * (g1[p] - sp1[j - 1] + mod) % mod + mod) % mod;
             g2[i] = (g2[i] - (primes[j] * primes[j] % mod) * (g2[p] - sp2[j - 1] + mod) % mod + mod) % mod;
+            // 质数的幂的点值
         }
     }
 

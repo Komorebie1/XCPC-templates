@@ -29,7 +29,7 @@ struct DSU {
     void merge(int a, int b, int dis)
     {
         p[find(a)] = find(b);
-        sz[b] += sz[a];
+        sz[find(b)] += sz[find(a)]; // sz 加到祖先上
         d[find(a)] = dis;  // 根据具体问题，初始化find(a)的偏移量
     }
 

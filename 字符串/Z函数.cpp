@@ -9,4 +9,4 @@ vector<int> get_z(string s)
         if (i + z[i] > l + z[l]) l = i;
     }
     return z;
-}//最后需要修改z[0] = n;
+} // 最后需要修改z[0] = n;

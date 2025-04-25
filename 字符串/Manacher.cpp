@@ -1,4 +1,4 @@
-std::vector<int> manacher(std::string s)  // 最后减一才是半径
+std::vector<int> manacher(std::string s)  // 最后减一才是半径(奇偶都是)
 {
     std::string t = "#";
     for (auto c : s) {
@@ -19,3 +19,7 @@ std::vector<int> manacher(std::string s)  // 最后减一才是半径
     }
     return r;
 }
+/*
+例如：aaa -> #a#a#a#
+return: {1 2 3 4 3 2 1}
+*/

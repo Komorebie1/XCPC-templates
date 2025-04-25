@@ -16,6 +16,7 @@ void tarjan(int u)
         }
     }
     if (low[u] == dfn[u]) {
+        // 栈中 u 及其上方的结点构成一个 SCC
         ++sc;
         while (st.top() != u) {
             scc[st.top()] = sc;

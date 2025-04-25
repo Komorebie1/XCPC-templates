@@ -2,7 +2,7 @@
 <Manacher> <Manacher.cpp>
 <trie树> <trie树.cpp>
 <Z函数> <Z函数.cpp> <Z函数.tex>
-<AC自动机> <AC自动机.cpp>
+<AC自动机> <AC自动机.cpp> <AC自动机.tex>
 <回文自动机> <回文自动机.cpp> <回文自动机.tex>
 <后缀排序> <后缀排序.cpp> <后缀排序.tex>
 <字符串哈希> <字符串哈希.cpp>

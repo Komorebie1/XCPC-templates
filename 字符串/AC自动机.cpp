@@ -1,3 +1,8 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define endl '\n'
+#define ll long long
+
 struct ACAM {
     int n;
     int trie_size = 10;
@@ -68,4 +73,22 @@ struct ACAM {
             cnt[fail[cur]] += cnt[cur];
         }
     }
-};
+} A;
+
+int main()
+{
+    int n;
+    cin >> n;
+    A.n = n;
+    A.T.resize(n);
+    for (auto& T : A.T) cin >> T, A.trie_size += T.size();
+    string S;
+    cin >> S;
+    A.init();
+    A.build();
+    A.count(S);
+    for (int i = 0; i < n; i++) {
+        cout << A.cnt[A.pos[i]] << endl;
+    }
+    return 0;
+}

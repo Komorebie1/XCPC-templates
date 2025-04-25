@@ -1,3 +1,10 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+const int N = 2e5 + 10;
+int n, m;
+int a[N];
+
 struct PresidentTree {
     static constexpr int N = 2e5 + 10;
     int ls[N * 25], rs[N * 25], idx = 0, cnt[N * 25], root[N * 25];
@@ -37,3 +44,26 @@ struct PresidentTree {
             return kth(rs[lx], rs[rx], mid + 1, r, k - res);
     }
 } T;
+
+int main()
+{
+    ios::sync_with_stdio(false), cin.tie(nullptr);
+    cin >> n >> m;
+    vector<int> t;
+    for (int i = 1; i <= n; i++) cin >> a[i], t.push_back(a[i]);
+    sort(t.begin(), t.end());
+    t.erase(unique(t.begin(), t.end()), t.end());
+
+    auto find = [&](int x) { return lower_bound(t.begin(), t.end(), x) - t.begin(); };
+
+    for (int i = 1; i <= n; i++) {
+        T.modify(T.root[i], T.root[i - 1], find(a[i]) + 1, 1, t.size());
+    }
+
+    while (m--) {
+        int l, r, k;
+        cin >> l >> r >> k;
+        cout << t[T.kth(T.root[l - 1], T.root[r], 1, t.size(), k)] << "\n";
+    }
+    return 0;
+}
